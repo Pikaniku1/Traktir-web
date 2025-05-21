@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Undangan Ulang Tahun Ignatius Andratama</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+    .content {
+      position: relative;
+      text-align: center;
+      padding: 80px 20px;
+      background: rgba(0,0,0,0.4);
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    .info {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    .button {
+      background: white;
+      color: #FF7F00;
+      padding: 14px 28px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+    }
+    .button:hover {
+      background: #e0e0e0;
+    }
+    .quote {
+      margin-top: 40px;
+      font-style: italic;
+      font-size: 18px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.85);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      color: black;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: black;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .gallery img {
+      max-width: 150px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Live Video Background -->
+  <video autoplay muted loop class="video-background">
+    <source src="background.mp4" type="video/mp4">
+    Browser tidak mendukung video.
+  </video>
+
+  <!-- Backsound -->
+  <audio autoplay loop>
+    <source src="backsound.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung audio.
+  </audio>
+
+  <!-- Content -->
+  <div class="content">
+    <h1>Selamat Ulang Tahun Ignatius Andratama!</h1>
+    <div class="info">📅 xx Juni 2025(gratis traktir) <br>📍 Central Park</div>
+    <button class="button" id="openModal">Lihat Galeri</button>
+
+    <div class="quote">
+      "Semoga setiap tahun yang berlalu membawa keberuntungan baru dan kesuksesan yang tak terduga."- Abang Chinese Ganteng
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content" id="passwordSection">
+      <span class="close">&times;</span>
+      <h2>Wajib ke Jakarta Barat(Traktir) 📷</h2>
+      <input type="password" id="passwordInput" placeholder="Masukkan kode(ultah lu)" style="padding:10px;font-size:16px;">
+      <button class="button" onclick="checkPassword()">Buka</button>
+      <p id="errorMsg" style="color:red; display:none; margin-top:10px;">Kode salah, coba lagi!</p>
+    </div>
+    <div class="modal-content" id="gallerySection" style="display:none;">
+      <span class="close">&times;</span>
+      <h2>SUT ya ganteng #hitamlegam 🎉</h2>
+      <div class="gallery">
+        <img src="foto1.jpg" alt="Foto 1">
+        <img src="foto2.jpg" alt="Foto 2">
+        <img src="foto3.jpg" alt="Foto 3">
+        <img src="foto4.jpg" alt="Foto 4">
+        <img src="foto5.jpg" alt="Foto 5">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModal");
+    var spans = document.getElementsByClassName("close");
+    var passwordSection = document.getElementById("passwordSection");
+    var gallerySection = document.getElementById("gallerySection");
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    for (let span of spans) {
+      span.onclick = function() {
+        modal.style.display = "none";
+        document.getElementById("passwordInput").value = "";
+        document.getElementById("errorMsg").style.display = "none";
+        gallerySection.style.display = "none";
+        passwordSection.style.display = "block";
+      }
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        document.getElementById("passwordInput").value = "";
+        document.getElementById("errorMsg").style.display = "none";
+        gallerySection.style.display = "none";
+        passwordSection.style.display = "block";
+      }
+    }
+
+    function checkPassword() {
+      var input = document.getElementById("passwordInput").value;
+      if(input === "21052008") {
+        passwordSection.style.display = "none";
+        gallerySection.style.display = "block";
+      } else {
+        document.getElementById("errorMsg").style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>
